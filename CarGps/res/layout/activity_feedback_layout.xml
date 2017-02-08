@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa">
+
+    <include
+        android:id="@+id/titleLayout"
+        layout="@layout/title_bar_layout" />
+
+    <EditText
+        android:id="@+id/contentEt"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_below="@id/titleLayout"
+        android:layout_marginLeft="@dimen/comm_margin"
+        android:layout_marginRight="@dimen/comm_margin"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/shape_edit_frame_bg"
+        android:gravity="left|top"
+        android:inputType="text"
+        android:maxLines="150"
+        android:padding="2dp"
+        android:textColor="#666666"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/contentEt"
+        android:layout_marginLeft="@dimen/comm_margin"
+        android:layout_marginRight="@dimen/comm_margin"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_ff9900_bg"
+        android:text="提交"
+        android:textColor="#fff"
+        android:textSize="18sp" />
+
+</RelativeLayout>

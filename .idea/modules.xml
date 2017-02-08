@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BaiduWalletRefactorLib/BaiduWalletRefactorLib.iml" filepath="$PROJECT_DIR$/BaiduWalletRefactorLib/BaiduWalletRefactorLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BaseFrame/BaseFrame.iml" filepath="$PROJECT_DIR$/BaseFrame/BaseFrame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CarGps/CarGps.iml" filepath="$PROJECT_DIR$/CarGps/CarGps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SystemBarTint/SystemBarTint.iml" filepath="$PROJECT_DIR$/SystemBarTint/SystemBarTint.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WidgetLibs/WidgetLibs.iml" filepath="$PROJECT_DIR$/WidgetLibs/WidgetLibs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pingpp/pingpp.iml" filepath="$PROJECT_DIR$/pingpp/pingpp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pingpp_one/pingpp_one.iml" filepath="$PROJECT_DIR$/pingpp_one/pingpp_one.iml" />
+      <module fileurl="file://$PROJECT_DIR$/workspace.iml" filepath="$PROJECT_DIR$/workspace.iml" />
+    </modules>
+  </component>
+</project>

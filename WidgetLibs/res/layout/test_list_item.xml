@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants">
+
+    <com.widget.android.view.SwitchSideView
+        android:id="@+id/switchSideView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@id/left_view"
+            android:layout_width="80dip"
+            android:layout_height="40dip"
+            android:layout_gravity="left"
+            android:text="left" />
+
+        <TextView
+            android:id="@id/right_view"
+            android:layout_width="80dip"
+            android:layout_height="40dip"
+            android:layout_gravity="right"
+            android:text="right" />
+
+        <com.widget.android.view.SideLayout
+            android:id="@id/side_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:background="#000000"
+                android:text="显示的内容" />
+        </com.widget.android.view.SideLayout>
+    </com.widget.android.view.SwitchSideView>
+
+</LinearLayout>

@@ -1,0 +1,7 @@
+include ':SystemBarTint'
+include ':pingpp_one'
+include ':pingpp'
+include ':BaseFrame'
+include ':WidgetLibs'
+include ':CarGps'
+include ':BaiduWalletRefactorLib'

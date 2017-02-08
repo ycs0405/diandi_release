@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.rp168.widget.view.TouchDelView
+        android:id="@+id/tdv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="测试测试"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:text="正文" />
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="100dip"
+                android:layout_height="wrap_content"
+                android:text="删除" />
+        </FrameLayout>
+    </com.rp168.widget.view.TouchDelView>
+
+</RelativeLayout>

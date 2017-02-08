@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/refreshable_list_header"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/refreshable_listview_arrow"
+            android:layout_toLeftOf="@+id/refreshable_list_text"
+            android:id="@+id/refreshable_list_arrow" />
+
+        <ProgressBar
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="invisible"
+            android:id="@+id/refreshable_list_progress"
+            android:layout_marginTop="8dp"
+            android:layout_toLeftOf="@+id/refreshable_list_text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_centerHorizontal="true"
+            android:text="下拉刷新"
+            android:textSize="13sp"
+            android:id="@+id/refreshable_list_text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未更新"
+            android:textSize="13sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:id="@+id/refresh_list_time_text" />
+    </RelativeLayout>
+</LinearLayout>

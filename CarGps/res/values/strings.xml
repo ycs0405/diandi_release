@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">电滴出行</string>
+    <string name="hello_world">Hello world!</string>
+
+    <string name="menu_settings">Settings</string>
+    <string name="scan_text">将二维码或条形码放入扫描框内，即可自动识别</string>
+    <string name="scan_text2">将二维码/条码置入框内，即可自动扫描</string>
+    <string name="scan_text3">我的二维码</string>
+
+    <string name="romote_service_name">电滴出行</string>
+
+</resources>

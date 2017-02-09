@@ -183,7 +183,9 @@ public class LeftMenu extends LinearLayout {
             UserInfo userInfo = MyApplication.getInstance().userInfo;
             nikeName.setText(userInfo.userName);
             yajingTv.setText(userInfo.myWallet + "元");
-            ImageLoader.getInstance().displayImage("http://" + userInfo.userImgurl, headImg, ImageLoadOptions.getListOptions(R.drawable.icon_defalut_head));
+//            ImageLoader.getInstance().clearMemoryCache();
+//            ImageLoader.getInstance().clearDiskCache();
+            ImageLoader.getInstance().displayImage(userInfo.userImgurl, headImg, ImageLoadOptions.getListOptions(R.drawable.icon_defalut_head));
             nikeName.setOnClickListener(new OnClickListener() {
 
                 @Override

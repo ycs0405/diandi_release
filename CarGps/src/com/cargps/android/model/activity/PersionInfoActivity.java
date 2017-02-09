@@ -4,7 +4,9 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cargps.android.MyApplication;
 import com.cargps.android.MyContacts;
@@ -32,6 +35,7 @@ import com.fu.baseframe.FrameApplication;
 import com.fu.baseframe.net.CallServer;
 import com.fu.baseframe.net.CustomDataRequest;
 import com.fu.baseframe.net.HttpListener;
+import com.fu.baseframe.utils.LogUtils;
 import com.fu.baseframe.utils.SystemOpt;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yolanda.nohttp.FileBinary;
@@ -94,12 +98,7 @@ public class PersionInfoActivity extends BaseActivity {
         DialogUtils.getInstance().showSelectPicture(this, new DialogCallback() {
             @Override
             public void camareClick() {
-//				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// 调用android自带的照相机
-//				File file = SdUtil.getFile("head.png", true);
-//				Uri uri = Uri.fromFile(file);
-//				intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0); 
-//				intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-//				startActivityForResult(intent, RESULT_CAMARE_IMAGE);
+
 
 
                 Intent in = new Intent();
@@ -113,7 +112,12 @@ public class PersionInfoActivity extends BaseActivity {
 
             @Override
             public void picClick() {
-
+				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);// 调用android自带的照相机
+//				File file = SdUtil.getFile("head.png", true);
+//				Uri uri = Uri.fromFile(file);
+//				intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
+//				intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+				startActivityForResult(intent, RESULT_CAMARE_IMAGE);
             }
         });
     }
@@ -161,7 +165,7 @@ public class PersionInfoActivity extends BaseActivity {
             }
 
             if (app.userInfo != null) {
-                ImageLoader.getInstance().displayImage("http://" + app.userInfo.userImgurl, headImg, ImageLoadOptions.getOptions());
+                ImageLoader.getInstance().displayImage( app.userInfo.userImgurl, headImg, ImageLoadOptions.getOptions());
             }
             mobileNoEt.setText(app.rootUserInfo.mobileNo);
             nikeNameEt.setText(app.rootUserInfo.fullName);
@@ -231,18 +235,44 @@ public class PersionInfoActivity extends BaseActivity {
     @SuppressWarnings("unused")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        ContentResolver cr = getContentResolver();
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case RESULT_CAMARE_IMAGE:
-                    Bitmap bitmap1 = ImageUtils.getimage(SdUtil.getFile("head.png", true).getAbsolutePath());
-                    ImageUtils.SavePicInLocal(bitmap1, "Copy.png");
-                    upFileImg();
+                    if (data != null) {
+                        if (data.getData() != null|| data.getExtras() != null){ //防止没有返回结果
+                            Uri uri =data.getData();
+                            Bitmap photo=null;
+                            if (uri != null) {
+                               photo = BitmapFactory.decodeFile(uri.getPath()); //拿到图片
+                            }
+                            if (photo == null) {
+                                Bundle bundle =data.getExtras();
+                                if (bundle != null){
+                                    photo =(Bitmap) bundle.get("data");
+                                } else {
+
+                                }
+                            }
+                        LogUtils.logDug("RESULT_CAMARE_IMAGE == "+photo);
+                        if(photo == null){
+                            Toast.makeText(getApplicationContext(), "找不到图片",Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        try {
+                            ImageUtils.SavePicInLocal(ImageUtils.comp(photo), "Copy.png");
+                            upFileImg();
+                        } catch (Exception e) {
+                            LogUtils.logDug(e.getMessage());
+                            e.printStackTrace();
+                        }
+                    }
+                    }
                     break;
                 case RESULT_PHOTO_IMAGE:
                     if (data != null) {
                         Uri uri = data.getData();
-                        ContentResolver cr = getContentResolver();
+
                         String degree = "";
                         if (isDownloadsDocument(uri)) {
                             String wholeID = getDocumentId(data.getData());
@@ -258,12 +288,13 @@ public class PersionInfoActivity extends BaseActivity {
                                 degree = cursor.getString(columnIndex1);
                             }
                         }
-
+                        LogUtils.logDug("picture url === "+degree+"\n uri == "+uri);
                         try {
                             Bitmap bitmap = ImageUtils.compressImageFromFile(cr, uri);
                             ImageUtils.SavePicInLocal(ImageUtils.comp(bitmap), "Copy.png");
                             upFileImg();
                         } catch (Exception e) {
+                            LogUtils.logDug(e.getMessage());
                             e.printStackTrace();
                         }
                     }
@@ -306,7 +337,9 @@ public class PersionInfoActivity extends BaseActivity {
             @Override
             public void onSucceed(int what, Response<StringResponse> response) {
                 if (response.isSucceed() && response.get() != null) {
-                    ImageLoader.getInstance().displayImage("http://" + response.get().data, headImg, ImageLoadOptions.getOptions());
+                    ImageLoader.getInstance().clearDiskCache();
+                    ImageLoader.getInstance().clearMemoryCache();
+                    ImageLoader.getInstance().displayImage( response.get().data, headImg, ImageLoadOptions.getOptions());
                     app.getUserInfoData();
                 }
             }
